@@ -10,6 +10,7 @@ namespace BugDS.Models.CodeFirst
         public int Id { get; set; }
         public string TicketId { get; set; }
         public string UserId { get; set; }
+        public DateTimeOffset? Modified { get; set; }
         public string Property { get; set; }
         public string ChangedOld { get; set; }
         public string ChangedNew { get; set; }

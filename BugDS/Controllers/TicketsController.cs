@@ -40,8 +40,8 @@ namespace BugDS.Controllers
         // GET: Tickets/Create
         public ActionResult Create()
         {
-            ViewBag.AssigneeUserId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
-            ViewBag.CreatedUserId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
+            ViewBag.AssigneeUserId = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.CreatedUserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -59,8 +59,8 @@ namespace BugDS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AssigneeUserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", ticket.AssigneeUserId);
-            ViewBag.CreatedUserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", ticket.CreatedUserId);
+            ViewBag.AssigneeUserId = new SelectList(db.Users, "Id", "FirstName", ticket.AssigneeUserId);
+            ViewBag.CreatedUserId = new SelectList(db.Users, "Id", "FirstName", ticket.CreatedUserId);
             return View(ticket);
         }
 
@@ -76,8 +76,8 @@ namespace BugDS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AssigneeUserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", ticket.AssigneeUserId);
-            ViewBag.CreatedUserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", ticket.CreatedUserId);
+            ViewBag.AssigneeUserId = new SelectList(db.Users, "Id", "FirstName", ticket.AssigneeUserId);
+            ViewBag.CreatedUserId = new SelectList(db.Users, "Id", "FirstName", ticket.CreatedUserId);
             return View(ticket);
         }
 
@@ -94,8 +94,8 @@ namespace BugDS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AssigneeUserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", ticket.AssigneeUserId);
-            ViewBag.CreatedUserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", ticket.CreatedUserId);
+            ViewBag.AssigneeUserId = new SelectList(db.Users, "Id", "FirstName", ticket.AssigneeUserId);
+            ViewBag.CreatedUserId = new SelectList(db.Users, "Id", "FirstName", ticket.CreatedUserId);
             return View(ticket);
         }
 

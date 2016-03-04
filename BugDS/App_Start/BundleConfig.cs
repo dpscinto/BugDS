@@ -22,20 +22,23 @@ namespace BugDS
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(                      
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/morris.min.js",
-                      "~/Scripts/pace.min.js",
                       "~/Scripts/parsley.min.js",
                       "~/Scripts/rapheal.min.js",
                       "~/Scripts/respond.js",
+                      "~/Scripts/chosen.jquery.js",
+                      "~/Scripts/jquery.dataTables.min.js",
                       "~/Scripts/endless.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/font-awesome.css",
                       "~/Content/endless.css",
+                      "~/Content/endless-skin.css",
                       "~/Content/morris.css",
-                      "~/Content/pace.css",
                       "~/Content/prettify.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/chosen.css",
+                      "~/Content/jquery.dataTables.css"));
         }
     }
 }

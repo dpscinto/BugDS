@@ -19,7 +19,7 @@ namespace BugDS.Models.CodeFirst
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTimeOffset Created { get; set; }
-        public DateTimeOffset? Modified { get; set; }
+        public DateTimeOffset? LastModified { get; set; }
         [AllowHtml]
         public string Description { get; set; }
         public string MediaURL { get; set; }

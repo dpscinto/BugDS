@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Detective - Dan Scinto</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="icon"
+          type="image/png"
+          href="images/favicon-bug.ico" />
+
+</head>
+<body class="overflow-hidden">
+    <div id="wrapper" class="preload">
+        <div id="top-nav" class="skin-1 fixed">
+            <div class="brand">
+                <i class="fa fa-bug"></i>
+                <span>Bug Detective</span>
+            </div><!-- /brand -->
+            <ul class="nav-notification clearfix">
+                <li>@Html.Partial("_LoginPartial")</li>
+            </ul>
+        </div><!-- /top-nav-->
+    <br />
+    <br />
+        <div class="body-content">
+            @RenderBody()
+        </div>
+    </div><!-- wrapper-->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

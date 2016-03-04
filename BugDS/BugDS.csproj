@@ -197,15 +197,23 @@
     <Compile Include="App_Start\SendGridMessage.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectManagerController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\SubmitterController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ProjectHelper.cs" />
+    <Compile Include="Models\AdminUserViewModel.cs" />
+    <Compile Include="Helper\UserRolesHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ProjectsViewModel.cs" />
     <Compile Include="Models\CodeFirst\Comment.cs" />
     <Compile Include="Models\CodeFirst\Log.cs" />
     <Compile Include="Models\CodeFirst\Notification.cs" />
@@ -227,6 +235,10 @@
     <Content Include="Content\bootstrap-wysihtml5.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bugtracker.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\chosen.css" />
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\endless-landing.css" />
     <Content Include="Content\endless-landing.min.css" />
@@ -246,6 +258,7 @@
     <Content Include="Content\prettify.css" />
     <Content Include="Content\slider.css" />
     <Content Include="Content\wysiwyg-color.css" />
+    <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -253,6 +266,7 @@
     <Content Include="form_wizard.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\favicon-bug.ico" />
     <Content Include="index.html" />
     <Content Include="login.html" />
     <Content Include="register.html" />
@@ -391,6 +405,11 @@
     <Content Include="Views\Tickets\Details.cshtml" />
     <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Admin\EditUserRole.cshtml" />
+    <Content Include="Views\Projects\SelectUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -399,10 +418,12 @@
     <Folder Include="Content\dropzone\" />
     <Folder Include="Content\gritter\" />
     <Folder Include="Content\minicolors\" />
-    <Folder Include="images\" />
     <Folder Include="Scripts\endless\" />
     <Folder Include="Scripts\jquery-ui-map\" />
     <Folder Include="Scripts\uncompressed\" />
+    <Folder Include="Views\Developer\" />
+    <Folder Include="Views\ProjectManager\" />
+    <Folder Include="Views\Submitter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

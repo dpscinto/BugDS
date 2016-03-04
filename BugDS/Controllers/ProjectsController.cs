@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using BugDS.Models;
 using BugDS.Models.CodeFirst;
+using BugDS.Helper;
+using Microsoft.AspNet.Identity;
 
 namespace BugDS.Controllers
 {
@@ -18,8 +20,17 @@ namespace BugDS.Controllers
         // GET: Projects
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+            if (!User.IsInRole("Admin"))
+            {
+                var user = db.Users.Find(userId);
+                return View(user.Projects.ToList());
+            }
+
             return View(db.Projects.ToList());
+
         }
+
 
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
@@ -39,7 +50,11 @@ namespace BugDS.Controllers
         // GET: Projects/Create
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Projects");
         }
 
         // POST: Projects/Create
@@ -66,12 +81,19 @@ namespace BugDS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+
+            if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
             {
-                return HttpNotFound();
+                Project project = db.Projects.Find(id);
+
+                if (project == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(project);
             }
-            return View(project);
+
+            return RedirectToAction("Index", "Projects");
         }
 
         // POST: Projects/Edit/5
@@ -123,6 +145,53 @@ namespace BugDS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //
+        //GET: SELECT USER FOR PROJECT
+        [HttpGet]
+        public ActionResult SelectUsers(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var project = db.Projects.Find(id);
+            ProjectsViewModel ProjectModel = new ProjectsViewModel();
+            ProjectHelper helper = new ProjectHelper();
+            var selected = helper.UsersInProject((int)id).Select(z=>z.Id);
+            ProjectModel.Users = new MultiSelectList(db.Users, "Id", "FullName", selected);
+            ProjectModel.Project = project;
+
+            return View(ProjectModel);
+
+        }
+
+        // POST: SELECT USER FOR PROJECT
+        [HttpPost]
+        public ActionResult SelectUsers(ProjectsViewModel model)
+        {
+            ProjectHelper helper = new ProjectHelper();
+
+            if (model.SelectedUsers == null)
+            {
+                string[] SelectedUsers = new string[] { "" };
+            }
+
+            foreach (var user in db.Users.Select(r => r.Id))
+            {
+                if (model.SelectedUsers.Contains(user))
+                {
+                    helper.AddUserToProject(user, model.Project.Id);
+                }
+                else
+                {
+                    helper.RemoveUserFromProject(user, model.Project.Id);
+                }
+            }
+
+            return RedirectToAction("Index", "Projects");
         }
     }
 }

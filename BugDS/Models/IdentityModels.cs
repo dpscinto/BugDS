@@ -18,6 +18,7 @@ namespace BugDS.Models
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName { get { return FirstName + " " + LastName; } }
         public string DisplayName { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
@@ -52,7 +53,6 @@ namespace BugDS.Models
         public DbSet<TicketStatus> TicketStatuses { get; set; }
         public DbSet<TicketType> TicketTypes { get; set; }
 
-        public System.Data.Entity.DbSet<BugDS.Models.ApplicationUser> ApplicationUsers { get; set; }
-        public System.Data.Entity.DbSet<BugDS.Models.CodeFirst.Project> Projects { get; set; }
+        public DbSet<Project> Projects { get; set; }
     }
 }

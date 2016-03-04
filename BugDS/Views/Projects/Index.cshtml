@@ -1,33 +1,56 @@
 ﻿@model IEnumerable<BugDS.Models.CodeFirst.Project>
 
-@{
-    ViewBag.Title = "Index";
+<body>
+    <div class="container">
+        <div class="row">
+            <h2>
+                Projects
+                @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                {
+                    @Html.ActionLink("+ Add Project", "Create", "Projects", null, new { @class = "btn btn-success" })
+                }
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="panel panel-default table-responsive">
+        <div class="padding-md clearfix">
+            <table class="table table-striped" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                        {
+                            <th>Project Manager</th>
+                        }
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                            {
+                                <td>@Html.ActionLink("Assign Developers", "SelectUsers", "Projects", new { id = item.Id }, null)</td>
+                            }
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+@section scripts{
+    <script>
+        $('#dataTable').DataTable({
+        });
+    </script>
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>

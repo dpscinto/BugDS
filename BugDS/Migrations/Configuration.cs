@@ -16,10 +16,11 @@ namespace BugDS.Migrations
         }
 
         protected override void Seed(BugDS.Models.ApplicationDbContext context)
-        {
+        {           
             var roleManager = new RoleManager<IdentityRole>(
             new RoleStore<IdentityRole>(context));
 
+            //Admin Role
             if (!context.Roles.Any(r => r.Name == "Admin"))
             {
                 roleManager.Create(new IdentityRole { Name = "Admin" });
@@ -41,6 +42,26 @@ namespace BugDS.Migrations
 
             var userId = userManager.FindByEmail("dpscinto@gmail.com").Id;
             userManager.AddToRole(userId, "Admin");
+
+            //Project Manager Role
+            if (!context.Roles.Any(r => r.Name == "Project Manager"))
+            {
+                roleManager.Create(new IdentityRole { Name = "Project Manager" });
+            }
+
+
+            //Developer Role
+            if (!context.Roles.Any(r => r.Name == "Developer"))
+            {
+                roleManager.Create(new IdentityRole { Name = "Developer" });
+            }
+
+            //Submitter Role
+            if (!context.Roles.Any(r => r.Name == "Submitter"))
+            {
+                roleManager.Create(new IdentityRole { Name = "Submitter" });
+            }
+
 
             //For Moderator
 
