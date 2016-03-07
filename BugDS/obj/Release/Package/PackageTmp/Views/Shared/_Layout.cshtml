@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Detective - Dan Scinto</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="icon"
+          type="image/png"
+          href="images/favicon-bug.ico" />
+
+</head>
+<body class="overflow-hidden">
+    <div id="wrapper" class="preload">
+        <div id="top-nav" class="skin-1 fixed">
+            <div class="brand">
+                <i class="fa fa-bug"></i>
+                <span>Bug Detective</span>
+            </div><!-- /brand -->
+            <ul class="nav-notification clearfix">
+                <li>@Html.Partial("_LoginPartial")</li>
+            </ul>
+        </div><!-- /top-nav-->
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="grey-container shortcut-wrapper">
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="@Url.Action("Index", "Admin")" class="shortcut-link">
+                    <span class="shortcut-icon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <span class="text">User Manager</span>
+                </a>
+            }
+            @if (User.IsInRole("Admin") || User.IsInRole("Project Manager") || User.IsInRole("Developer"))
+            {
+                <a href="@Url.Action("Index", "Projects")" class="shortcut-link">
+                    <span class="shortcut-icon">
+                        <i class="fa fa-bar-chart-o"></i>
+                    </span>
+                    <span class="text">Projects</span>
+                </a>
+            }
+            <a href="@Url.Action("Index","Tickets")" class="shortcut-link">
+                <span class="shortcut-icon">
+                    <i class="fa fa-list"></i>
+                </span>
+                <span class="text">Tickets</span>
+            </a>
+            <a href="@Url.Action("Index","Manage")" class="shortcut-link">
+                <span class="shortcut-icon">
+                    <i class="fa fa-cog"></i>
+                </span>
+                <span class="text">Settings</span>
+            </a>
+        </div><!-- /grey-container -->
+        <div class="body-content">
+            @RenderBody()
+        </div>
+    </div><!-- wrapper-->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

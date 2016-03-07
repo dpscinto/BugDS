@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace BugDS.Controllers
 {
+    [RequireHttps]
     public class ProjectsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

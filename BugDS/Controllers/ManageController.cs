@@ -10,6 +10,7 @@ using BugDS.Models;
 
 namespace BugDS.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {

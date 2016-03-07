@@ -11,6 +11,7 @@ using BugDS.Models.CodeFirst;
 
 namespace BugDS.Controllers
 {
+    [RequireHttps]
     public class TicketsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

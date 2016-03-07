@@ -1,31 +1,378 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <title>Bug Detective</title>
+
+    <!-- CSS -->
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- Owl Carousel -->
+    <link href="~/Content/owl.theme.css" rel="stylesheet">
+    <link href="~/Content/owl.carousel.css" rel="stylesheet">
+
+    <!-- Simple text rotator -->
+    <link href="~/Content/simpletextrotator.css" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" media="screen">
+
+    <!-- Animate css -->
+    <link href="~/Content/animate.css" rel="stylesheet">
+
+    <!-- Custom styles CSS -->
+    <link href="~/Content/style.css" rel="stylesheet" media="screen">
+
+    <link rel="icon"
+          type="image/png"
+          href="~/images/favicon-bug.ico" />
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- Preloader -->
+
+        <div id="preloader">
+            <div id="status">
+                <div class="status-mes"><h4>Bug Detective</h4></div>
+            </div>
+        </div>
+
+        <!-- Navigation start -->
+
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="~/Home"><i class="fa fa-search"></i><span>  </span>Bug Detective</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#intro">Home</a></li>
+                        <li><a href="#profile">About</a></li>
+                        <li><a href="http://dscinto.azurewebsites.net/">Portfolio</a></li>
+                        <li><a href="https://dscinto-blog.azurewebsites.net/Home/Contact">Contact</a></li>
+                        <li>@Html.Partial("_LoginPartial2")</li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Navigation end -->
+        <!-- Intro section start -->
+
+        <section id="intro" class="section">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div class="hello wow bounceInDown">
+                            <h1>Bug Detective</h1>
+                            <h3><span class="rotate">HTML5, CSS3, JavaScript | Bootstrap | ASP.NET | MVC | C#</span></h3>
+                        </div>
+
+                        <a href="#profile">
+                            <div class="mouse-icon">
+                                <div class="wheel"></div>
+                            </div>
+                        </a>
+
+                    </div>
+
+                </div><!-- .row -->
+
+            </div><!-- .container -->
+
+        </section>
+
+        <!-- Intro section end -->
+        <!-- Profile contact callout section -->
+
+        <section id="profile-contact">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-sm-4 wow bounceInLeft">
+                        <div class="profile-item">
+                            <i class="fa fa-envelope-o"></i>
+                            <h5><a href="#">markstone@some.com</a></h5>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 wow bounceInUp">
+                        <div class="profile-item">
+                            <i class="fa fa-phone"></i>
+                            <h5>(1234) 1234-5678-1011</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 wow bounceInRight">
+                        <div class="profile-item">
+                            <i class="fa fa-map-marker"></i>
+                            <h5>144 Some Street, Some City, Some Country</h5>
+                        </div>
+                    </div>
+
+                </div><!-- .row -->
+
+            </div><!-- .container -->
+
+        </section>
+
+        <!-- Profile contact callout section -->
+        <!-- Services section start -->
+
+        <section id="services" class="section">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-12 headline wow bounceInDown">
+                        <h2>What i can do</h2>
+                        <p>My Services.</p>
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <div class="row">
+
+                            <div class="col-sm-4 wow bounceInLeft">
+                                <div class="service">
+                                    <div class="icon">
+                                        <i class="fa fa-pencil"></i>
+                                    </div>
+                                    <h4>Text rotator</h4>
+                                    <div class="text">
+                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 wow bounceInUp">
+                                <div class="service">
+                                    <div class="icon">
+                                        <i class="fa fa-image"></i>
+                                    </div>
+                                    <h4>Slideshow</h4>
+                                    <div class="text">
+                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 wow bounceInRight">
+                                <div class="service">
+                                    <div class="icon">
+                                        <i class="fa fa-cog"></i>
+                                    </div>
+                                    <h4>Easy configure</h4>
+                                    <div class="text">
+                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- .row -->
+
+                        <div class="row">
+
+                            <div class="col-sm-4 wow bounceInUp" data-wow-delay=".2s">
+                                <div class="service">
+                                    <div class="icon">
+                                        <i class="fa fa-code"></i>
+                                    </div>
+                                    <h4>Clear code</h4>
+                                    <div class="text">
+                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 wow bounceInUp" data-wow-delay=".4s">
+                                <div class="service">
+                                    <div class="icon">
+                                        <i class="fa fa-desktop"></i>
+                                    </div>
+                                    <h4>Responsive design</h4>
+                                    <div class="text">
+                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 wow bounceInUp" data-wow-delay=".6s">
+                                <div class="service">
+                                    <div class="icon">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                    <h4>Support</h4>
+                                    <div class="text">
+                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- .row -->
+
+                    </div><!-- .col-md-12 -->
+
+                </div><!-- .row -->
+
+            </div><!-- .container -->
+
+        </section>
+
+        <!-- Services section end -->
+        <!-- Callout section start -->
+
+        <section class="callout">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-3 hidden-xs wow bounceInLeft">
+                        <h3>My status</h3>
+                    </div>
+
+                    <div class="col-md-9 headline nomargin wow bounceInDown">
+                        <h3>I'm currently available for freelance work.</h3>
+                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                        <a href="#contact" class="btn btn-default btn-custom-2 callout-btn"><i class="fa fa-paper-plane-o icon-before"></i> Contact me</a>
+                    </div>
+
+                </div><!-- .row -->
+
+            </div><!-- .container -->
+
+        </section>
+
+        <!-- Callout section end -->
+        <!-- Callout section start -->
+
+        <section id="clients" class="callout">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-3 hidden-xs wow bounceInLeft">
+                        <h3>Customers</h3>
+                    </div>
+
+                    <div class="col-md-9 wow bounceInRight">
+
+                        <div id="owl-clients" class="owl-carousel">
+
+                            <div class="owl-item">
+                                <img src="~/images/client160-3.png" alt="">
+                                <h4>Client 1</h4>
+                            </div>
+
+                            <div class="owl-item">
+                                <img src="~/images/client160-1.png" alt="">
+                                <h4>Client 2</h4>
+                            </div>
+
+                            <div class="owl-item">
+                                <img src="~/images/client160-3.png" alt="">
+                                <h4>Client 3</h4>
+                            </div>
+
+                            <div class="owl-item">
+                                <img src="~/images/client160-1.png" alt="">
+                                <h4>Client 4</h4>
+                            </div>
+
+                            <div class="owl-item">
+                                <img src="~/images/client160-3.png" alt="">
+                                <h4>Client 5</h4>
+                            </div>
+
+                            <div class="owl-item">
+                                <img src="~/images/client160-1.png" alt="">
+                                <h4>Client 6</h4>
+                            </div>
+
+                        </div>
+
+                    </div><!-- .col-md-9 -->
+
+                </div><!-- .row -->
+
+            </div><!-- .container -->
+
+        </section>
+
+        <!-- Callout section end -->
+        <!-- Footer start -->
+
+        <footer id="footer">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <p class="copy">
+                            © 2016 Dan Scinto, All Rights Reserved.
+                        </p>
+                    </div>
+
+                </div><!-- .row -->
+
+            </div><!-- .container -->
+
+        </footer>
+
+        <!-- Footer end -->
+    </div><!-- .wrapper -->
+</body>
+</html>
+
+	<!-- Javascript files -->
+<!-- jQuery -->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!-- Background slider -->
+<script src="~/Scripts/jquery.backstretch.min.js"></script>
+<!-- OwlCarousel -->
+<script src="~/Scripts/owl.carousel.min.js"></script>
+<!-- Text rotator -->
+<script src="~/Scripts/jquery.simple-text-rotator.min.js"></script>
+<!-- Waypoints -->
+<script src="~/Scripts/waypoints.min.js"></script>
+<!-- WOW - Reveal Animations When You Scroll -->
+<script src="~/Scripts/wow.min.js"></script>
+<!-- Smooth scroll -->
+<script src="~/Scripts/smoothscroll.js"></script>
+<!-- Custom scripts -->
+<script src="~/Scripts/custom.js"></script>

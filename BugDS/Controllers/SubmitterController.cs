@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace BugDS.Controllers
 {
+    [RequireHttps]
     [Authorize(Roles = "Administrator, Project Manager, Developer, Submitter")]
     public class SubmitterController : Controller
     {

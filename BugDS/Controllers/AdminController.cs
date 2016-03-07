@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace BugDS.Controllers
 {
+    [RequireHttps]
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {

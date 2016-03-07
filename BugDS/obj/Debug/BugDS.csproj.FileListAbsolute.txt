@@ -80,3 +80,8 @@ c:\users\dan scinto\documents\visual studio 2015\Projects\BugDS\BugDS\bin\Micros
 c:\users\dan scinto\documents\visual studio 2015\Projects\BugDS\BugDS\obj\Debug\BugDS.csprojResolveAssemblyReference.cache
 c:\users\dan scinto\documents\visual studio 2015\Projects\BugDS\BugDS\obj\Debug\BugDS.dll
 c:\users\dan scinto\documents\visual studio 2015\Projects\BugDS\BugDS\obj\Debug\BugDS.pdb
+C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\bin\SendGrid.dll
+C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\bin\SendGrid.SmtpApi.dll
+C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\bin\SendGridMail.dll
+C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\bin\System.Net.Http.Formatting.dll
+C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\bin\System.Net.Http.Formatting.xml

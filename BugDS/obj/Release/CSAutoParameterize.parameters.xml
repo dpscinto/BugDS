@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Server=coderfoundry.cloudapp.net,55555; Database=dscinto-bugtracker;User ID=dscinto;Password=C0derF0undry!;Trusted_Connection=False;Encrypt=True;Connection Timeout=30; TrustServerCertificate=True;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Dan\ Scinto\\Documents\\Visual\ Studio\ 2015\\Projects\\BugDS\\BugDS\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="BugDSContext-Web.config Connection String" description="BugDSContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=BugDSContext-20160301152142; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|BugDSContext-20160301152142.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Dan\ Scinto\\Documents\\Visual\ Studio\ 2015\\Projects\\BugDS\\BugDS\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BugDSContext']/@connectionString" />
+  </parameter>
+</parameters>
