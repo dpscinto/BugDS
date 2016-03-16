@@ -84,3 +84,4 @@ C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\bin\Micros
 C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\obj\Release\BugDS.dll
 C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\obj\Release\BugDS.pdb
+C:\Users\Dan Scinto\Documents\Visual Studio 2015\Projects\BugDS\BugDS\obj\Release\BugDS.csprojResolveAssemblyReference.cache

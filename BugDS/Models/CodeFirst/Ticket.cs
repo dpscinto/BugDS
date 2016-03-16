@@ -20,15 +20,14 @@ namespace BugDS.Models.CodeFirst
         public string Name { get; set; }
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? LastModified { get; set; }
-        [AllowHtml]
         public string Description { get; set; }
         public string MediaURL { get; set; }
         public string CreatedUserId { get; set; }
         public string AssigneeUserId { get; set; }
-        public string ProjectId { get; set; }
-        public string PriorityId { get; set; }
-        public string StatusId { get; set; }
-        public string TypeId { get; set; }
+        public int ProjectId { get; set; }
+        public int PriorityId { get; set; }
+        public int StatusId { get; set; }
+        public int TypeId { get; set; }
 
         public virtual ApplicationUser CreatedUser { get; set; }
         public virtual ApplicationUser AssigneeUser { get; set; }

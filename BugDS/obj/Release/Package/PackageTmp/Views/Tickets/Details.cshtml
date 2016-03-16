@@ -9,6 +9,55 @@
 <div>
     <h4>Ticket</h4>
     <hr />
+
+    <!-- Blog Comments -->
+    <!-- Comments Form -->
+    <h3>Leave a Comment:</h3>
+        <form role="form" action="@Url.Action("Create", "Comments")" method="Post">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="TicketId" value="@Model.Id" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="Description" rows="3"></textarea>
+            </div>
+            <div class="form-group pull-right">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input name="image" type="file" class="form-control" id="fileUpload" />
+            @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Posted Comments -->
+    <!-- Comment -->
+    @foreach (var com in Model.Comments)
+            {
+        <article class="media">
+            <a class="pull-left">
+                <img class="media-object" src="~/images/bubble.png" alt="">
+            </a>
+            <article class="media-body">
+                <h4 class="media-heading">
+                    @com.User.FullName
+                    <small>
+                        @com.Created.DateTime.ToLongDateString()
+                        @Html.ActionLink("Edit", "Edit", new { id = com.Id }) <span> | </span>
+                        @Html.ActionLink("Delete", "Delete", new { id = com.Id })
+                    </small>
+                </h4>
+                <p>@Html.Raw(com.Description)</p>
+            </article>
+        </article>
+    }
+</div>
+
+
+<div>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.AssigneeUser.FirstName)
@@ -43,11 +92,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Modified)
+            @Html.DisplayNameFor(model => model.LastModified)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Modified)
+            @Html.DisplayFor(model => model.LastModified)
         </dd>
 
         <dt>

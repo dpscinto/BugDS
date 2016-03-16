@@ -51,7 +51,7 @@ namespace BugDS.Controllers
         // GET: Projects/Create
         public ActionResult Create()
         {
-            if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+            if (User.IsInRole("Admin"))
             {
                 return View();
             }
@@ -69,7 +69,7 @@ namespace BugDS.Controllers
             {
                 db.Projects.Add(project);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Projects");
             }
 
             return View(project);

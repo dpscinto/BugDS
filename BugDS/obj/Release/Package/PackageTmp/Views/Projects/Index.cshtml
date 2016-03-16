@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
             <h2>
-                Projects
-                @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                Project Manager
+                @if (User.IsInRole("Admin"))
                 {
                     @Html.ActionLink("+ Add Project", "Create", "Projects", null, new { @class = "btn btn-success" })
                 }
@@ -33,7 +33,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Name)</td>
                             @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
                             {
-                                <td>@Html.ActionLink("Assign Developers", "SelectUsers", "Projects", new { id = item.Id }, null)</td>
+                                <td>@Html.ActionLink("Assign Project Members", "SelectUsers", "Projects", new { id = item.Id }, null)</td>
                             }
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

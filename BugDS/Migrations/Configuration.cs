@@ -3,7 +3,9 @@ namespace BugDS.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
+    using Models.CodeFirst;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -16,7 +18,7 @@ namespace BugDS.Migrations
         }
 
         protected override void Seed(BugDS.Models.ApplicationDbContext context)
-        {           
+        {
             var roleManager = new RoleManager<IdentityRole>(
             new RoleStore<IdentityRole>(context));
 
@@ -62,27 +64,48 @@ namespace BugDS.Migrations
                 roleManager.Create(new IdentityRole { Name = "Submitter" });
             }
 
+            //if (!context.CategoryLists.Any())
+            //{
+            //    context.CategoryLists.AddRange(
+            //        new List<CategoryList> {
+            //    new CategoryList { Name = "Automobile" },
 
-            //For Moderator
+            ////////////////////////////////////////////////////////////////////
 
-            //    if (!context.Roles.Any(r => r.Name == "Moderator"))
-            //    {
-            //        roleManager.Create(new IdentityRole { Name = "Moderator" });
-            //    }
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
 
-            //    if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com"))
-            //    {
-            //        userManager.Create(new ApplicationUser
-            //        {
-            //            UserName = "moderator@coderfoundry.com",
-            //            Email = "moderator@coderfoundry.com",
-            //            DisplayName = "CF Moderator"
-            //        }, "Password-1");
-            //    }
+            context.TicketPriorities.AddOrUpdate(
+                p => p.Name,
+            new TicketPriority { Name = "Low" },
+            new TicketPriority { Name = "Medium" },
+            new TicketPriority { Name = "High" },
+            new TicketPriority { Name = "Urgent" },
+            new TicketPriority { Name = "Critical" }
 
-            //    userId = userManager.FindByEmail("moderator@coderfoundry.com").Id;
-            //    userManager.AddToRole(userId, "Moderator");
-            //}
+                );
+
+            context.TicketStatuses.AddOrUpdate(
+                p => p.Name,
+            new TicketStatus { Name = "Unassigned" },
+            new TicketStatus { Name = "To Do" },
+            new TicketStatus { Name = "Doing" },
+            new TicketStatus { Name = "Done" }
+
+                );
+
+
+            context.TicketTypes.AddOrUpdate(
+                p => p.Name,
+            new TicketType { Name = "Database" },
+            new TicketType { Name = "Security" },
+            new TicketType { Name = "Forms" },
+            new TicketType { Name = "Front End" },
+            new TicketType { Name = "Other" }
+
+               );
+
         }
     }
 }
