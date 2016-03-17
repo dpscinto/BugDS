@@ -285,10 +285,14 @@
     <Content Include="Content\slider.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\wysiwyg-color.css" />
+    <Content Include="images\asp.jpg" />
+    <Content Include="images\detective.jpg" />
+    <Content Include="images\html.png" />
     <Content Include="images\488.GIF" />
     <Content Include="images\client160-1.png" />
     <Content Include="images\client160-3.png" />
     <Content Include="images\bubble.png" />
+    <Content Include="images\clogo.png" />
     <Content Include="images\glasses.jpg" />
     <Content Include="images\sort_asc.png" />
     <Content Include="images\sort_both.png" />

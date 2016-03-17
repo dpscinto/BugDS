@@ -69,9 +69,12 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#intro">Home</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Dashboard", "Dashboard", "Home")</li>
+                        }
                         <li><a href="#about">About</a></li>
-                        <li><a target="_blank" href="http://dscinto.azurewebsites.net/#portfolio">Portfolio</a></li>
-                        <li><a target="_blank" href="https://dscinto-blog.azurewebsites.net/Home/Contact">Contact</a></li>
+                        <li><a target="_blank" href="#callout">Contact</a></li>
                         <li>@Html.Partial("_LoginPartial2")</li>
                     </ul>
                 </div>
@@ -110,185 +113,73 @@
         </section>
 
         <!-- Intro section end -->
-        
-        <!-- Services section start -->
-
-        <section id="about" class="section">
-
+        <!-- About Section -->
+        <section id="about" class="content-section text-center">
             <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>About Bug Detective</h2>
+                </div>
+                <div class="col-md-4">
+                    <img width="200" height="200" src="~/images/html.png" />
+                    <br />
+                    <p>I used HTML5, CSS3, and JavaScript to structure and style the front-end of my blog with help from a Bootstrap template.</p>
+                </div>
+                <div class="col-md-4">
+                    <br />
+                    <img width="200" height="200" src="~/images/asp.jpg">
+                    <br />
+                    <br />
+                    <br />
+                    <p>An ASP.NET MVC project is the framework used to build, test, and publish the personal financial portal.</p>
+                </div>
+                <div class="col-md-4">
+                    <img width="180" height="200" src="~/images/clogo.png">
+                    <br />
+                    <p>C# is the object-oriented programming language used to structure and design this project.</p>
+                </div>
 
-                <div class="row">
-
-                    <div class="col-md-12 headline wow bounceInDown">
-                        <h2>What i can do</h2>
-                        <p>My Services.</p>
-                    </div>
-
-                    <div class="col-md-12">
-
-                        <div class="row">
-
-                            <div class="col-sm-4 wow bounceInLeft">
-                                <div class="service">
-                                    <div class="icon">
-                                        <i class="fa fa-pencil"></i>
-                                    </div>
-                                    <h4>Text rotator</h4>
-                                    <div class="text">
-                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 wow bounceInUp">
-                                <div class="service">
-                                    <div class="icon">
-                                        <i class="fa fa-image"></i>
-                                    </div>
-                                    <h4>Slideshow</h4>
-                                    <div class="text">
-                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 wow bounceInRight">
-                                <div class="service">
-                                    <div class="icon">
-                                        <i class="fa fa-cog"></i>
-                                    </div>
-                                    <h4>Easy configure</h4>
-                                    <div class="text">
-                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div><!-- .row -->
-
-                        <div class="row">
-
-                            <div class="col-sm-4 wow bounceInUp" data-wow-delay=".2s">
-                                <div class="service">
-                                    <div class="icon">
-                                        <i class="fa fa-code"></i>
-                                    </div>
-                                    <h4>Clear code</h4>
-                                    <div class="text">
-                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 wow bounceInUp" data-wow-delay=".4s">
-                                <div class="service">
-                                    <div class="icon">
-                                        <i class="fa fa-desktop"></i>
-                                    </div>
-                                    <h4>Responsive design</h4>
-                                    <div class="text">
-                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 wow bounceInUp" data-wow-delay=".6s">
-                                <div class="service">
-                                    <div class="icon">
-                                        <i class="fa fa-life-ring"></i>
-                                    </div>
-                                    <h4>Support</h4>
-                                    <div class="text">
-                                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div><!-- .row -->
-
-                    </div><!-- .col-md-12 -->
-
-                </div><!-- .row -->
-
-            </div><!-- .container -->
-
+                <div class="col-lg-8 col-lg-offset-2">
+                    <p>You can check out my code on GitHub.</p>
+                    <a href="https://github.com/dpscinto/BudgetDS" class="btn btn-default btn-custom-2 callout-btn"><i class="fa fa-github fa-fw"></i> <span class="network-name">GitHub</span></a>
+                </div>
+            </div>
         </section>
-
-        <!-- Services section end -->
         <!-- Callout section start -->
 
-        <section class="callout">
+        <section id="callout" class="callout">
 
             <div class="container">
 
                 <div class="row">
 
                     <div class="col-md-3 hidden-xs wow bounceInLeft">
-                        <h3>My status</h3>
+                        <h3>Contact Me</h3>
+
                     </div>
 
                     <div class="col-md-9 headline nomargin wow bounceInDown">
                         <h3>I'm currently available for freelance work.</h3>
-                        <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
-                        <a href="#contact" class="btn btn-default btn-custom-2 callout-btn"><i class="fa fa-paper-plane-o icon-before"></i> Contact me</a>
+                        <p>Feel free to email me to provide some feedback, suggestions, employment, or to just say hello!</p>
+
+                        <ul class="list-inline banner-social-buttons">
+                            <li>
+                                <a target="_blank" href="mailto:dpscinto@gmail.com" class="btn btn-default btn-custom-2 callout-btn"><i class="fa fa-paper-plane-o icon-before"></i> Email</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://twitter.com/dpscinto" class="btn btn-default btn-custom-2 callout-btn"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://www.facebook.com/dpscinto" class="btn btn-default btn-custom-2 callout-btn"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://www.linkedin.com/in/danielscinto" class="btn btn-default btn-custom-2 callout-btn"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">LinkedIn</span></a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="http://dscinto.azurewebsites.net/#portfolio" class="btn btn-default btn-custom-2 callout-btn"><i class="fa fa-tree fa-fw"></i><span class="network-name">Portfolio</span></a>
+                            </li>
+                        </ul>
+
                     </div>
-
-                </div><!-- .row -->
-
-            </div><!-- .container -->
-
-        </section>
-
-        <!-- Callout section end -->
-        <!-- Callout section start -->
-
-        <section id="clients" class="callout">
-
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-md-3 hidden-xs wow bounceInLeft">
-                        <h3>Customers</h3>
-                    </div>
-
-                    <div class="col-md-9 wow bounceInRight">
-
-                        <div id="owl-clients" class="owl-carousel">
-
-                            <div class="owl-item">
-                                <img src="~/images/client160-3.png" alt="">
-                                <h4>Client 1</h4>
-                            </div>
-
-                            <div class="owl-item">
-                                <img src="~/images/client160-1.png" alt="">
-                                <h4>Client 2</h4>
-                            </div>
-
-                            <div class="owl-item">
-                                <img src="~/images/client160-3.png" alt="">
-                                <h4>Client 3</h4>
-                            </div>
-
-                            <div class="owl-item">
-                                <img src="~/images/client160-1.png" alt="">
-                                <h4>Client 4</h4>
-                            </div>
-
-                            <div class="owl-item">
-                                <img src="~/images/client160-3.png" alt="">
-                                <h4>Client 5</h4>
-                            </div>
-
-                            <div class="owl-item">
-                                <img src="~/images/client160-1.png" alt="">
-                                <h4>Client 6</h4>
-                            </div>
-
-                        </div>
-
-                    </div><!-- .col-md-9 -->
 
                 </div><!-- .row -->
 
@@ -322,7 +213,7 @@
 </body>
 </html>
 
-	<!-- Javascript files -->
+<!-- Javascript files -->
 <!-- jQuery -->
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <!-- Bootstrap JS -->

@@ -338,6 +338,11 @@ a,
 	padding: 120px 0;
 }
 
+.section, .content-section {
+	position: relative;
+	padding: 60px 0;
+}
+
 .callout {
 	background: #F5F5F5;
 }
@@ -759,5 +764,4 @@ h3 > .fa {
 	}
 
 }
-
 
