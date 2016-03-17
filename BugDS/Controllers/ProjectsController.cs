@@ -14,11 +14,13 @@ using Microsoft.AspNet.Identity;
 namespace BugDS.Controllers
 {
     [RequireHttps]
+    [Authorize]
     public class ProjectsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
+        [Authorize(Roles = "Admin, Project Manager, Developer")]
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();

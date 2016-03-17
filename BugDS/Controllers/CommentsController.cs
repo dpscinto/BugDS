@@ -20,7 +20,8 @@ namespace BugDS.Controllers
         [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TicketId,Description,MediaURL")]Comment comment, HttpPostedFileBase image)
-        {
+        {         
+
             if (ModelState.IsValid)
             {
                 comment.UserId = User.Identity.GetUserId();
@@ -34,7 +35,16 @@ namespace BugDS.Controllers
                 }
 
                 db.Comments.Add(comment);
+
                 db.SaveChanges();
+                db.Comments.Include("Ticket").FirstOrDefault(t=>t.TicketId == comment.TicketId);
+                var dev = db.Users.Find(comment.Ticket.AssigneeUserId).Email;
+                new EmailService().SendAsync(new IdentityMessage
+                {
+                    Destination = dev,
+                    Subject = "Ticket Updates",
+                    Body = "Updates have been made to one of your tickets!"
+                });
 
             }
             return RedirectToAction("Details", "Tickets", new { id = comment.TicketId });

@@ -69,7 +69,6 @@
                             @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
                             {
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span>|</span>
                                 @Html.ActionLink("Assign", "Assign", new { id = item.Id }) <span>|</span>
                             }
                             else if (User.IsInRole("Developer"))

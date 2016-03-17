@@ -5,7 +5,7 @@
 
 <hr />
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <h3>Ticket Details:</h3>
         <hr />
         <dl class="dl-horizontal">
@@ -103,7 +103,7 @@
 
         </dl>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <h3>Ticket Log:</h3>
         <hr />
         <div class="panel panel-default table-responsive">
@@ -152,7 +152,7 @@
 <!-- Blog Comments -->
 <!-- Comments Form -->
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <h3>Leave a Comment:</h3>
         <hr />
         @if (User.IsInRole("Admin") || User.IsInRole("Project Manager") || User.IsInRole("Submitter"))
@@ -210,7 +210,7 @@
     </div>
     <!-- Posted Comments -->
     <!-- Comment -->
-    <div class="col-md-6">
+    <div class="col-md-8">
         <h3>Comments(@Model.Comments.Count):</h3>
         <hr />
         @foreach (var com in Model.Comments)

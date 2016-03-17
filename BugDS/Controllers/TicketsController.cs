@@ -131,22 +131,16 @@ namespace BugDS.Controllers
         // POST: Tickets/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Created,LastModified,Description,MediaURL,CreatedUserId,AssigneeUserId,ProjectId,PriorityId,StatusId,TypeId")] Ticket ticket, HttpPostedFileBase image)
+        public ActionResult Edit([Bind(Include = "Id,Name,Created,LastModified,Description,MediaUrl,CreatedUserId,AssigneeUserId,ProjectId,PriorityId,StatusId,TypeId")] Ticket ticket, HttpPostedFileBase image)
         {
 
             var userId = User.Identity.GetUserId();
             var modified = new DateTimeOffset(DateTime.Now);
             var oldTic = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
+            var dev = db.Users.Find(ticket.AssigneeUserId).Email;
 
             if (ModelState.IsValid)
             {
-                ticket.LastModified = System.DateTimeOffset.Now;
-                db.Tickets.Attach(ticket);
-                db.Entry(ticket).Property("Description").IsModified = true;
-                db.Entry(ticket).Property("MediaURL").IsModified = true;
-                db.Entry(ticket).Property("PriorityId").IsModified = true;
-                db.Entry(ticket).Property("StatusId").IsModified = true;
-                db.Entry(ticket).Property("TypeId").IsModified = true;
 
                 if (oldTic?.Description != ticket.Description)
                 {
@@ -160,6 +154,13 @@ namespace BugDS.Controllers
                         UserId = userId
                     };
                     db.Logs.Add(ticketlog);
+                }
+
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/images/Tickets/"), fileName));
+                    ticket.MediaURL = "~/images/Tickets/" + fileName;
                 }
 
                 if (oldTic?.MediaURL != ticket.MediaURL)
@@ -217,6 +218,22 @@ namespace BugDS.Controllers
                     };
                     db.Logs.Add(ticketlog);
                 }
+
+                ticket.LastModified = System.DateTimeOffset.Now;
+                db.Tickets.Attach(ticket);
+                db.Entry(ticket).Property("Description").IsModified = true;
+                db.Entry(ticket).Property("MediaURL").IsModified = true;
+                db.Entry(ticket).Property("PriorityId").IsModified = true;
+                db.Entry(ticket).Property("StatusId").IsModified = true;
+                db.Entry(ticket).Property("TypeId").IsModified = true;
+                db.Entry(ticket).Property("LastModified").IsModified = true;
+
+                new EmailService().SendAsync(new IdentityMessage
+                {
+                    Destination = dev,
+                    Subject = "Ticket Updates",
+                    Body = "Updates have been made to one of your tickets!"
+                });
 
                 db.SaveChanges();
                 return RedirectToAction("Index", "Tickets");
@@ -297,14 +314,43 @@ namespace BugDS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Assign([Bind(Include = "Id, LastModified, AssigneeUserId")] Ticket ticket)
         {
+            var userId = User.Identity.GetUserId();
+            var modified = new DateTimeOffset(DateTime.Now);
+            var oldTic = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
+            var dev = db.Users.Find(ticket.AssigneeUserId).Email;
+
             if (ModelState.IsValid)
             {
+
+                if (oldTic?.AssigneeUserId != ticket.AssigneeUserId)
+                {
+                    string old = db.Users.Find(oldTic?.AssigneeUserId)?.FullName;
+                    var nw = db.Users.Find(ticket.AssigneeUserId).FullName;                   
+
+                    Log ticketlog = new Log
+                    {
+                        TicketId = ticket.Id,
+                        Property = "Developer",
+                        ChangedOld = old,
+                        ChangedNew = nw,
+                        Modified = modified,
+                        UserId = userId
+                    };
+                    db.Logs.Add(ticketlog);
+                }
                 ticket.LastModified = System.DateTimeOffset.Now;
                 db.Tickets.Attach(ticket);
                 db.Entry(ticket).Property("AssigneeUserId").IsModified = true;
                 db.Entry(ticket).Property("LastModified").IsModified = true;
 
-                db.SaveChanges();
+                new EmailService().SendAsync(new IdentityMessage
+                {
+                    Destination = dev,
+                    Subject = "You've been assigned a new ticket",
+                    Body = "Time to get to work. You have a new task to be completed!"
+                });
+
+                db.SaveChanges();             
                 return RedirectToAction("Index", "Tickets");
             }
             return View();

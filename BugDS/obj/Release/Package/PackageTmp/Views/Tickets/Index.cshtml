@@ -21,7 +21,7 @@
                     <th>Description</th>
                     <th>Project</th>
                     <th>Priority</th>
-                    <th>Asignee</th>
+                    <th>Developer</th>
                     <th>Status</th>
                     <th>Type</th>
                     <th>Modified</th>
@@ -69,7 +69,6 @@
                             @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
                             {
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span>|</span>
                                 @Html.ActionLink("Assign", "Assign", new { id = item.Id }) <span>|</span>
                             }
                             else if (User.IsInRole("Developer"))
