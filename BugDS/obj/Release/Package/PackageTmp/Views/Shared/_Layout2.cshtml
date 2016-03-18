@@ -34,9 +34,12 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#intro">Home</a></li>
-                        <li><a href="#profile">About</a></li>
-                        <li><a href="http://dscinto.azurewebsites.net/">Portfolio</a></li>
-                        <li><a href="https://dscinto-blog.azurewebsites.net/Home/Contact">Contact</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Dashboard", "Dashboard", "Home")</li>
+                        }
+                        <li><a href="#about">About</a></li>
+                        <li><a target="_blank" href="#callout">Contact</a></li>
                         <li>@Html.Partial("_LoginPartial2")</li>
                     </ul>
                 </div>

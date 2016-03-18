@@ -1,56 +1,63 @@
 ﻿@model IEnumerable<BugDS.Models.CodeFirst.Project>
 
-<body>
-    <div class="container">
-        <div class="row">
-            <h2>
-                Projects
-                @if (User.IsInRole("Admin"))
-                {
-                    @Html.ActionLink("+ Add Project", "Create", "Projects", null, new { @class = "btn btn-success" })
-                }
-            </h2>
-        </div>
-    </div>
-    <hr />
-    <div class="panel panel-default table-responsive">
-        <div class="padding-md clearfix">
-            <table class="table table-striped" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>Project Name</th>
-                        @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-                        {
-                            <th>Project Manager</th>
-                            <th>Options</th>
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <strong>
+                        Projects
+                    </strong>
+                    @if (User.IsInRole("Admin"))
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                            @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-                            {
-                                <td>@Html.ActionLink("Assign Project Members", "SelectUsers", "Projects", new { id = item.Id }, null)</td>
-
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                                </td>
-                            }
-                        </tr>
+                        @Html.ActionLink("+ Add Project", "Create", "Projects", null, new { @class = "btn btn-success" })
                     }
-                </tbody>
-            </table>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default table-responsive">
+                    <div class="padding-md clearfix">
+                        <table class="table table-striped" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                                    {
+                                        <th>Project Manager</th>
+                                        <th>Options</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                                        {
+                                            <td>@Html.ActionLink("Assign Project Members", "SelectUsers", "Projects", new { id = item.Id }, null)</td>
+
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</body>
+</div>
 
 @section scripts{
     <script>
         $('#dataTable').DataTable({
+            "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]]
         });
     </script>
 }

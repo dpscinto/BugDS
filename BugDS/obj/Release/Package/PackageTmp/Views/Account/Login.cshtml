@@ -51,31 +51,33 @@
                                 </div>
                             </div>*@
                         @* Enable this once you have account confirmation enabled for password reset functionality*@
-                            <p>
-                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                            </p>
-                        <div class="form-group">
-                            <label class="col-md-2">Log In</label>
-                            <div class="col-md-10">
-                                <input type="submit" value="Log In" class="btn btn-default btn-block btn-success" />
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>
+                            <div class="form-group">
+                                <label class="col-md-2">Log In</label>
+                                <div class="col-md-10">
+                                    <input type="submit" value="Log In" class="btn btn-default btn-block btn-success" />
+                                </div>
                             </div>
-                        </div>
 
                     }
                     <hr />
                     <section>
-                        <label class="col-md-2">Demo</label>
-                        <div class="col-md-10">
-                            <a class="btn btn-default btn-block btn-info" href="@Url.Action("CustomLogin","Account", new { name="admin"})"> Guest Admin</a>
-                        </div>
-                        <div class="col-md-offset-2 col-md-10">
-                            <a class="btn btn-default btn-block" href="@Url.Action("CustomLogin","Account", new { name="projectmanager"})"> Guest Project Manager</a>
-                        </div>
-                        <div class="col-md-offset-2 col-md-10">
-                            <a class="btn btn-default btn-block btn-warning" href="@Url.Action("CustomLogin","Account", new { name="developer"})"> Guest Developer</a>
-                        </div>
-                        <div class="col-md-offset-2 col-md-10">
-                            <a class="btn btn-default btn-block btn-danger" href="@Url.Action("CustomLogin","Account", new { name="submitter"})"> Guest Submitter</a>
+                        <div class="form-group">
+                            <label>Demo Logins</label>
+                            <div class="col-md-offset-2 col-md-10">
+                                <a class="btn btn-default btn-block btn-info" href="@Url.Action("CustomLogin","Account", new { name="admin"})"> Guest Admin</a>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <a class="btn btn-default btn-block" href="@Url.Action("CustomLogin","Account", new { name="projectmanager"})"> Guest Project Manager</a>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <a class="btn btn-default btn-block btn-warning" href="@Url.Action("CustomLogin","Account", new { name="developer"})"> Guest Developer</a>
+                            </div>
+                            <div class="col-md-offset-2 col-md-10">
+                                <a class="btn btn-default btn-block btn-danger" href="@Url.Action("CustomLogin","Account", new { name="submitter"})"> Guest Submitter</a>
+                            </div>
                         </div>
                     </section>
                 </div>

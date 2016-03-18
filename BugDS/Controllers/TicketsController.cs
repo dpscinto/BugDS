@@ -131,13 +131,13 @@ namespace BugDS.Controllers
         // POST: Tickets/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Created,LastModified,Description,MediaUrl,CreatedUserId,AssigneeUserId,ProjectId,PriorityId,StatusId,TypeId")] Ticket ticket, HttpPostedFileBase image)
+        public ActionResult Edit([Bind(Include = "Id,Description,MediaUrl,PriorityId,StatusId,TypeId")] Ticket ticket, HttpPostedFileBase image)
         {
 
             var userId = User.Identity.GetUserId();
             var modified = new DateTimeOffset(DateTime.Now);
             var oldTic = db.Tickets.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
-            var dev = db.Users.Find(ticket.AssigneeUserId).Email;
+            var dev = db.Users.Find(oldTic.AssigneeUserId).Email;
 
             if (ModelState.IsValid)
             {
@@ -228,14 +228,18 @@ namespace BugDS.Controllers
                 db.Entry(ticket).Property("TypeId").IsModified = true;
                 db.Entry(ticket).Property("LastModified").IsModified = true;
 
-                new EmailService().SendAsync(new IdentityMessage
-                {
-                    Destination = dev,
-                    Subject = "Ticket Updates",
-                    Body = "Updates have been made to one of your tickets!"
-                });
-
                 db.SaveChanges();
+
+                if (dev != null)
+                {
+                    new EmailService().SendAsync(new IdentityMessage
+                    {
+                        Destination = dev,
+                        Subject = "Ticket Updates",
+                        Body = "Updates have been made to one of your tickets!"
+                    });
+                }
+          
                 return RedirectToAction("Index", "Tickets");
 
                 // See "EditHelper.cs"
@@ -343,6 +347,8 @@ namespace BugDS.Controllers
                 db.Entry(ticket).Property("AssigneeUserId").IsModified = true;
                 db.Entry(ticket).Property("LastModified").IsModified = true;
 
+                db.SaveChanges();
+
                 new EmailService().SendAsync(new IdentityMessage
                 {
                     Destination = dev,
@@ -350,7 +356,6 @@ namespace BugDS.Controllers
                     Body = "Time to get to work. You have a new task to be completed!"
                 });
 
-                db.SaveChanges();             
                 return RedirectToAction("Index", "Tickets");
             }
             return View();

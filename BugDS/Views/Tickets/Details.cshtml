@@ -6,145 +6,152 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <h3>Ticket Details:</h3>
-        <hr />
-        <dl class="dl-horizontal">
+        <div class="panel panel-default">
+            <div class="panel-heading">Ticket Details<div class="pull-right"> @Html.ActionLink("Edit", "Edit", new { id = Model.Id })</div></div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
 
-            <dt>
-                Creator
-            </dt>
+                    <dt>
+                        Creator
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.CreatedUser.FirstName)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CreatedUser.FirstName)
+                    </dd>
 
-            <dt>
-                Developer
-            </dt>
+                    <dt>
+                        Developer
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.AssigneeUser.FirstName)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.AssigneeUser.FirstName)
+                    </dd>
 
-            <dt>
-                Project
-            </dt>
+                    <dt>
+                        Project
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Project.Name)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Project.Name)
+                    </dd>
 
-            <dt>
-                Ticket
-            </dt>
+                    <dt>
+                        Ticket
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
 
-            <dt>
-                Date Created
-            </dt>
+                    <dt>
+                        Date Created
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Created)
-            </dd>
+                    <dd>
+                        @Model.Created.DateTime.ToString()
+                    </dd>
 
-            <dt>
-                Date Modified
-            </dt>
+                    <dt>
+                        Date Modified
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LastModified)
-            </dd>
+                    <dd>
+                        @Model.LastModified.Value.DateTime.ToString()
+                    </dd>
 
-            <dt>
-                Description
-            </dt>
+                    <dt>
+                        Description
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
 
-            <dt>
-                Attachment
-            </dt>
+                    <dt>
+                        Attachment
+                    </dt>
 
-            <dd>
-                @if (Model.MediaURL != null)
-                {
-                    <a target="_blank" href="@Url.Content(Model.MediaURL)">View</a>
-                }
-            </dd>
-
-            <dt>
-                Priority
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Priority.Name)
-            </dd>
-
-            <dt>
-                Status
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Status.Name)
-            </dd>
-
-            <dt>
-                Type
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Type.Name)
-            </dd>
-
-        </dl>
-    </div>
-    <div class="col-md-8">
-        <h3>Ticket Log:</h3>
-        <hr />
-        <div class="panel panel-default table-responsive">
-            <div class="padding-md clearfix">
-                <table class="table table-striped" id="dataTable">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Ticket</th>
-                            <th>Property</th>
-                            <th>Previous Value</th>
-                            <th>New Value</th>
-                            <th>Editor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var log in Model.Logs)
+                    <dd>
+                        @if (Model.MediaURL != null)
                         {
-                            <tr>
-                                <td>
-                                    @log.Modified.Value.DateTime.ToString()
-                                </td>
-                                <td>
-                                    @log.Ticket.Name
-                                </td>
-                                <td>
-                                    @log.Property
-                                </td>
-                                <td>
-                                    @log.ChangedOld
-                                </td>
-                                <td>
-                                    @log.ChangedNew
-                                </td>
-                                <td>
-                                    @log.User.FullName
-                                </td>
-                            </tr>
+                            <a target="_blank" href="@Url.Content(Model.MediaURL)">View</a>
                         }
-                    </tbody>
-                </table>
+                    </dd>
+
+                    <dt>
+                        Priority
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Priority.Name)
+                    </dd>
+
+                    <dt>
+                        Status
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Status.Name)
+                    </dd>
+
+                    <dt>
+                        Type
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Type.Name)
+                    </dd>
+
+                </dl>
+            </div>
+        </div><!-- /panel -->
+    </div><!-- /.col -->
+
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">Ticket Log</div>
+            <div class="panel-body">
+                <div class="panel panel-default table-responsive">
+                    <div class="padding-md clearfix">
+                        <table class="table table-striped" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Ticket</th>
+                                    <th>Property</th>
+                                    <th>Previous Value</th>
+                                    <th>New Value</th>
+                                    <th>Editor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var log in Model.Logs)
+                                {
+                                    <tr>
+                                        <td>
+                                            @log.Modified.Value.DateTime.ToString()
+                                        </td>
+                                        <td>
+                                            @log.Ticket.Name
+                                        </td>
+                                        <td>
+                                            @log.Property
+                                        </td>
+                                        <td>
+                                            @log.ChangedOld
+                                        </td>
+                                        <td>
+                                            @log.ChangedNew
+                                        </td>
+                                        <td>
+                                            @log.User.FullName
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -153,96 +160,100 @@
 <!-- Comments Form -->
 <div class="row">
     <div class="col-md-4">
-        <h3>Leave a Comment:</h3>
-        <hr />
-        @if (User.IsInRole("Admin") || User.IsInRole("Project Manager") || User.IsInRole("Submitter"))
-        {
-            <form role="form" action="@Url.Action("Create", "Comments")" method="Post" enctype="Multipart/form-data">
-                @Html.AntiForgeryToken()
-                <div class="form-group">
-                    <input type="hidden" class="form-control" name="TicketId" value="@Model.Id" />
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="Description" rows="3"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <input name="image" type="file" class="form-control" id="fileUpload" />
-                        @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        }
-
-        else if (User.IsInRole("Developer"))
-        {
-            if (Model.AssigneeUserId != User.Identity.GetUserId())
-            {
-                <p>You do not have permission to comment on tickets you are not assigned to.</p>
-            }
-            else
-            {
-                <form role="form" action="@Url.Action("Create", "Comments")" method="Post" enctype="Multipart/form-data">
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="TicketId" value="@Model.Id" />
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" name="Description" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            <input name="image" type="file" class="form-control" id="fileUpload" />
-                            @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+        <div class="panel panel-default">
+            <div class="panel-heading">Leave a Comment</div>
+            <div class="panel-body">
+                @if (User.IsInRole("Admin") || User.IsInRole("Project Manager") || User.IsInRole("Submitter"))
+                {
+                    <form role="form" action="@Url.Action("Create", "Comments")" method="Post" enctype="Multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="TicketId" value="@Model.Id" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            }
-        }
+                        <div class="form-group">
+                            <textarea class="form-control" name="Description" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                <input name="image" type="file" class="form-control" id="fileUpload" />
+                                @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                }
+
+                else if (User.IsInRole("Developer"))
+                {
+                    if (Model.AssigneeUserId != User.Identity.GetUserId())
+                    {
+                        <p>You do not have permission to comment on tickets you are not assigned to.</p>
+                    }
+                    else
+                    {
+                        <form role="form" action="@Url.Action("Create", "Comments")" method="Post" enctype="Multipart/form-data">
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="TicketId" value="@Model.Id" />
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="Description" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <input name="image" type="file" class="form-control" id="fileUpload" />
+                                    @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </form>
+                    }
+                }
+            </div>
+        </div>
     </div>
     <!-- Posted Comments -->
     <!-- Comment -->
     <div class="col-md-8">
-        <h3>Comments(@Model.Comments.Count):</h3>
-        <hr />
-        @foreach (var com in Model.Comments)
-        {
-            <article class="media">
-                <article class="media-body">
-                    <h4 class="media-heading">
-                        @com.User.FullName
-                        <small>
-                            @com.Created.DateTime.ToLongDateString()
-                            @if (User.IsInRole("Admin"))
+        <div class="panel panel-default">
+            <div class="panel-heading">Comments(@Model.Comments.Count):</div>
+            <div class="panel-body">
+                @foreach (var com in Model.Comments)
+                {
+                    <article class="media">
+                        <article class="media-body">
+                            <h4 class="media-heading">
+                                @com.User.FullName
+                                <small>
+                                    @com.Created.DateTime.ToLongDateString()
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @Html.ActionLink("Edit", "Edit", "Comments", null, new { id = com.Id }) <span> | </span>
+                                        @Html.ActionLink("Delete", "Delete", "Comments", null, new { id = com.Id })
+                                    }
+                                </small>
+                            </h4>
+                            <p>
+                                @Html.Raw(com.Description)
+                            @if (com.MediaURL != null)
                             {
-                                @Html.ActionLink("Edit", "Edit", "Comments", null, new { id = com.Id }) <span> | </span>
-                                @Html.ActionLink("Delete", "Delete", "Comments", null, new { id = com.Id })
+                                <a target="_blank" href="@Url.Content(com.MediaURL)">View Attachment</a>
                             }
-                        </small>
-                    </h4>
-                    <p>@Html.Raw(com.Description)</p>
-                    @if (com.MediaURL != null)
-                    {
-                        <a target="_blank" href="@Url.Content(com.MediaURL)">View Attachment</a>
-                    }
-                </article>
-            </article>
-        }
+                        </p>
+                        </article>
+                    </article>
+                    <hr />
+                }
+            </div>
+        </div>
     </div>
 </div>
-<br />
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
 @section scripts{
     <script>

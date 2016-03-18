@@ -2,97 +2,106 @@
 @using Microsoft.AspNet.Identity
 
 <div class="container">
+    <br />
     <div class="row">
-        <h2>
-            Ticket Manager
-            @Html.ActionLink("+ Add Ticket", "Create", "Tickets", null, new { @class = "btn btn-success" })
-        </h2>
-    </div>
-</div>
-<hr />
-<div class="panel panel-default table-responsive">
-    <div class="padding-md clearfix">
-        <table class="table table-striped" id="dataTable">
-            <thead>
-                <tr>
-                    <th>Created</th>
-                    <th>Creator</th>
-                    <th>Ticket</th>
-                    <th>Description</th>
-                    <th>Project</th>
-                    <th>Priority</th>
-                    <th>Developer</th>
-                    <th>Status</th>
-                    <th>Type</th>
-                    <th>Modified</th>
-                    <th>Options</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @item.Created.DateTime.ToString()
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreatedUser.FullName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Project.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Priority.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AssigneeUser.FullName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Type.Name)
-                        </td>
-                        <td>
-                            @if (item.LastModified != null)
-                            {
-                                @item.LastModified.Value.DateTime.ToString()
-                            }
-                        </td>
-                        <td>
-                            @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-                            {
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
-                                @Html.ActionLink("Assign", "Assign", new { id = item.Id }) <span>|</span>
-                            }
-                            else if (User.IsInRole("Developer"))
-                            {
-                                if (item.AssigneeUserId == User.Identity.GetUserId())
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <strong>
+                        Ticket Manager
+                    </strong>
+                    @Html.ActionLink("+ Add Ticket", "Create", "Tickets", null, new { @class = "btn btn-success" })
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default table-responsive">
+                    <div class="padding-md clearfix">
+                        <table class="table table-striped" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Created</th>
+                                    <th>Creator</th>
+                                    <th>Ticket</th>
+                                    <th>Description</th>
+                                    <th>Project</th>
+                                    <th>Priority</th>
+                                    <th>Developer</th>
+                                    <th>Status</th>
+                                    <th>Type</th>
+                                    <th>Modified</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
                                 {
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
+                                    <tr>
+                                        <td>
+                                            @item.Created.DateTime.ToString()
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreatedUser.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Project.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Priority.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AssigneeUser.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Type.Name)
+                                        </td>
+                                        <td>
+                                            @if (item.LastModified != null)
+                                            {
+                                                @item.LastModified.Value.DateTime.ToString()
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                                            {
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
+                                                @Html.ActionLink("Assign", "Assign", new { id = item.Id }) <span>|</span>
+                                            }
+                                            else if (User.IsInRole("Developer"))
+                                            {
+                                                if (item.AssigneeUserId == User.Identity.GetUserId())
+                                                {
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span>|</span>
+                                                }
+                                            }
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+
+                                        </td>
+                                    </tr>
                                 }
-                            }
-                            @Html.ActionLink("Details", "Details", new { id = item.Id })
-
-
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 @section scripts{
     <script>
         $('#dataTable').DataTable({
-            "order": [0, 'desc']
+            "order": [0, 'desc'],
+            "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]]
         });
     </script>
 }

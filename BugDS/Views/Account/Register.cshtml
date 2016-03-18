@@ -23,37 +23,33 @@
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group">
-                            @Html.LabelFor(m => m.FirstName)
-                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control input-sm bounceIn animation-delay2" })
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-3 control-label" })
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control input-sm bounceIn animation-delay2 col-md-9" })
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.LastName)
-                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control input-sm bounceIn animation-delay3" })
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-md-3 control-label" })
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control input-sm bounceIn animation-delay3 col-md-9" })
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Email)
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm bounceIn animation-delay4" })
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm bounceIn animation-delay4 col-md-9" })
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Password)
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm bounceIn animation-delay5" })
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm bounceIn animation-delay5 col-md-9" })
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.ConfirmPassword)
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-sm bounceIn animation-delay6" })
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-3 control-label" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-sm bounceIn animation-delay6 col-md-9" })
                         </div>
-                        <div class="seperator"></div>
+                        <hr />
+                        @Html.ValidationSummary("", new { @class = "text-danger col-sm-offset-1" })
                         <div class="form-group">
-                            <div class="controls">
+                            <div class="controls col-md-10 col-md-offset-1">
                                 Already have an account? @Html.ActionLink("Log In", "Login", new { @class = "primary-font login-link" })
+                                <input type="submit" class="btn btn-success" value="Register" />
                             </div>
                         </div><!-- /form-group -->
-                        @Html.ValidationSummary("", new { @class = "text-danger col-sm-offset-1" })
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" class="btn btn-default" value="Register" />
-                                </div>
-                            </div>
                     }
                 </div>
             </div>
