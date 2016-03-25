@@ -33,13 +33,13 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#intro">Home</a></li>
+                        <li><a href="~/Home">Home</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li>@Html.ActionLink("Dashboard", "Dashboard", "Home")</li>
+                            <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
                         }
-                        <li><a href="#about">About</a></li>
-                        <li><a target="_blank" href="#callout">Contact</a></li>
+                        <li><a href="~/Home/#about">About</a></li>
+                        <li><a href="~/Home/#callout">Contact</a></li>
                         <li>@Html.Partial("_LoginPartial2")</li>
                     </ul>
                 </div>

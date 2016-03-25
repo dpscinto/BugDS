@@ -10,7 +10,10 @@
                     <strong>
                         Ticket Manager
                     </strong>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
+                    {
                     @Html.ActionLink("+ Add Ticket", "Create", "Tickets", null, new { @class = "btn btn-success" })
+                    }
                 </h4>
             </div>
             <div class="panel-body">

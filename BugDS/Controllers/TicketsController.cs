@@ -316,7 +316,7 @@ namespace BugDS.Controllers
         // POST: Tickets/Assign/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Assign([Bind(Include = "Id, LastModified, AssigneeUserId")] Ticket ticket)
+        public ActionResult Assign([Bind(Include = "Id, LastModified, AssigneeUserId, StatusId")] Ticket ticket)
         {
             var userId = User.Identity.GetUserId();
             var modified = new DateTimeOffset(DateTime.Now);
@@ -343,8 +343,10 @@ namespace BugDS.Controllers
                     db.Logs.Add(ticketlog);
                 }
                 ticket.LastModified = System.DateTimeOffset.Now;
+                ticket.StatusId = db.TicketStatuses.FirstOrDefault(n => n.Name == "To Do").Id;
                 db.Tickets.Attach(ticket);
                 db.Entry(ticket).Property("AssigneeUserId").IsModified = true;
+                db.Entry(ticket).Property("StatusId").IsModified = true;
                 db.Entry(ticket).Property("LastModified").IsModified = true;
 
                 db.SaveChanges();

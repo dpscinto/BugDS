@@ -71,7 +71,7 @@
                         <li><a href="#intro">Home</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li>@Html.ActionLink("Dashboard", "Dashboard", "Home")</li>
+                            <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
                         }
                         <li><a href="#about">About</a></li>
                         <li><a target="_blank" href="#callout">Contact</a></li>

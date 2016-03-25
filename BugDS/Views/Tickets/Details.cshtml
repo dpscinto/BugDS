@@ -181,7 +181,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
                 }
@@ -203,8 +203,7 @@
                                 <textarea class="form-control" name="Description" rows="3"></textarea>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div>
                                     <input name="image" type="file" class="form-control" id="fileUpload" />
                                     @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
                                 </div>
@@ -259,7 +258,7 @@
     <script>
         $('#dataTable').DataTable({
             "order": [0, 'desc'],
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            "lengthMenu": [[3, 10, 15, -1], [3, 10, 15, "All"]]
         });
     </script>
 }

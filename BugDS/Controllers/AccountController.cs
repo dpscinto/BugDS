@@ -78,7 +78,7 @@ namespace BugDS.Controllers
             switch (result)
             {               
                 case SignInStatus.Success:                
-                    return RedirectToAction("Dashboard", "Home");
+                    return RedirectToAction("Index", "Tickets");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -98,7 +98,7 @@ namespace BugDS.Controllers
             var email = name + "@bugtracker.com";
             var user = UserManager.FindByEmail(email);
             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Tickets");
         }
 
         //
@@ -173,7 +173,7 @@ namespace BugDS.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Tickets");
                 }
                 AddErrors(result);
             }
